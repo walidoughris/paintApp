@@ -1,0 +1,23 @@
+{
+  "name": "paintapp",
+  "version": "1.0.0",
+  "description": "paint app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walidoughris/paintApp.git"
+  },
+  "author": "walid oughris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/walidoughris/paintApp/issues"
+  },
+  "homepage": "https://github.com/walidoughris/paintApp#readme",
+  "dependencies": {
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
