@@ -1,6 +1,6 @@
-//require('@babel/plugin-transform-runtime')
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
+import 'normalize.css'
 import './css/main.css'
-let somme=(a,b)=>{
-    return a+b;
-}
-console.log(somme(1,4));

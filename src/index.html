@@ -1,11 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1>hello thetre</h1>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tools">
+        <div class="group command">
+          <div class="item" data-command="undo" title="undo">
+            <i class="fas fa-undo icon"></i>
+          </div>
+          <div class="item" data-command="download" title="dawnload">
+            <i class="fas fa-download icon"></i>
+          </div>
+        </div>
+        <div class="group shapes">
+          <div class="item" data-tooles="line" title="Line">
+            <!-- <i class="fa fa-line-chart fa-2x"></i>-->
+            <span style="font-weight: bold; color: #fff; font-size: 16pt"
+              >\</span
+            >
+          </div>
+          <div class="item" data-tooles="rectangle" title="Rectange">
+            <i class="far fa-square icon"></i>
+          </div>
+          <div class="item" data-tooles="circal" title="Circle">
+            <i class="fas fa-circle-thin icon"></i>
+          </div>
+          <div class="item" data-tooles="triange" title="Triange">
+            <i class="fas fa-exclamation-triangle icon"></i>
+          </div>
+        </div>
+        <div class="group tooles">
+          <div class="item active" data-tooles="pencil" title="Pencile">
+            <i class="fas fa-pencil icon"></i>
+          </div>
+          <div class="item" data-tooles="brush" title="Brush">
+            <i class="fas fa-paint-brush icon"></i>
+          </div>
+          <div class="item" data-tooles="paint-punck" title="Paint-punck">
+            <i class="fas fa-map-pin icon"></i>
+          </div>
+          <div class="item" data-tooles="erase" title="Erase">
+            <i class="fas fa-eraser icon"></i>
+          </div>
+        </div>
+        <div class="group lineWidth for-shap" style="display: block">
+          <div class="item line active" data-line-width="1" title="1 pixel">
+            <i class="fas fa-circle icon" style="font-size: 4pt"></i>
+          </div>
+          <div class="item line" data-line-width="2" title="2 pixel">
+            <i class="fas fa-circle icon" style="font-size: 6pt"></i>
+          </div>
+          <div class="item line" data-line-width="3" title="3 pixel">
+            <i class="fas fa-circle icon" style="font-size: 8pt"></i>
+          </div>
+          <div class="item line" data-line-width="4" title="4 pixel">
+            <i class="fas fa-circle icon" style="font-size: 10pt"></i>
+          </div>
+          <div class="item line" data-line-width="5" title="5 pixel">
+            <i class="fas fa-circle icon" style="font-size: 12pt"></i>
+          </div>
+        </div>
+        <div class="group lineWidth for-brush" style="display: none">
+          <div class="item line active" data-brush-width="4" title="4 pixel">
+            <i class="fas fa-circle icon" style="font-size: 9pt"></i>
+          </div>
+          <div class="item line" data-brush-width="6" title="6 pixel">
+            <i class="fas fa-circle icon" style="font-size: 11pt"></i>
+          </div>
+          <div class="item line" data-brush-width="8" title="8 pixel">
+            <i class="fas fa-circle icon" style="font-size: 13pt"></i>
+          </div>
+          <div class="item line" data-brush-width="10" title="10 pixel">
+            <i class="fas fa-circle icon" style="font-size: 15pt"></i>
+          </div>
+          <div class="item line" data-brush-width="12" title="12 pixel">
+            <i class="fas fa-circle icon" style="font-size: 17pt"></i>
+          </div>
+        </div>
+      </div>
+      <div class="paintApp">
+        <canvas id="paintBorde"></canvas>
+      </div>
+      <div class="colores">
+        <div class="item" data-color="#ffffff">
+          <i class="fas fa-square icon" style="color: #fff"></i>
+        </div>
+        <div class="item active" data-color="#000000">
+          <i class="fas fa-square icon" style="color: #000"></i>
+        </div>
+        <div class="item" data-color="#ff0000">
+          <i class="fas fa-square icon" style="color: #f00"></i>
+        </div>
+        <div class="item" data-color="#00ff00">
+          <i class="fas fa-square icon" style="color: #0f0"></i>
+        </div>
+        <div class="item" data-color="#0000ff">
+          <i class="fas fa-square icon" style="color: #00f"></i>
+        </div>
+        <div class="item" data-color="#00ffff">
+          <i class="fas fa-square icon" style="color: #0ff"></i>
+        </div>
+        <div class="item" data-color="#ffeb44">
+          <i class="fas fa-square icon" style="color: #ffeb44"></i>
+        </div>
+        <div class="item" data-color="#ee7821">
+          <i class="fas fa-square icon" style="color: #ee7821"></i>
+        </div>
+        <div class="item" data-color="#ee21eb">
+          <i class="fas fa-square icon" style="color: #ee21eb"></i>
+        </div>
+        <div class="item" data-color="#b7b6b6">
+          <i class="fas fa-square icon" style="color: #b7b6b6"></i>
+        </div>
+        <div class="item" data-color="#cccccc">
+          <i class="fas fa-square icon" style="color: #ccc"></i>
+        </div>
+        <div class="item" data-color="#960cf4">
+          <i class="fas fa-square icon" style="color: #960cf4"></i>
+        </div>
+        <div class="item" data-color="#67f2b1">
+          <i class="fas fa-square icon" style="color: #67f2b1"></i>
+        </div>
+        <div class="item" data-color="#242323">
+          <i class="fas fa-square icon" style="color: #242323"></i>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
