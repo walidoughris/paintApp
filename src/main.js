@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-free/js/brands'
 import 'normalize.css'
 import './css/main.css'
 import {TOOL_BRUCH,TOOL_ERASER,TOOL_CIRCLE,TOOL_LINE,TOOL_PAINT_PACKET,TOOL_PENCIL,TOOL_TRIANGLE,TOOL_RECTANGLE} from './classes/tool';
+import Paint from './classes/paint.class'
 // the globale dom variables
 const commands=document.querySelectorAll('[data-command]');
 const tooles=document.querySelectorAll('[data-tooles]');
@@ -12,6 +13,10 @@ const lineWidths=document.querySelectorAll('[data-line-width]');
 const colores=document.querySelectorAll('[data-color]');
 const shapeLineWidth=document.querySelector('.lineWidth.for-shap');
 const brushLineWidth=document.querySelector('.lineWidth.for-brush');
+//inial paint class to drow on the canvas
+let paint=new Paint('paintBorde');
+paint.activeTool=TOOL_PENCIL;
+paint.init();
 // add the click event to the selected comands
 commands.forEach(command=>{
     command.addEventListener('click',e=>console.log(command.getAttribute('data-command')));
@@ -23,8 +28,9 @@ tooles.forEach(tool=>{
         console.log(tool.getAttribute('data-tooles'))
         tool.classList.add('active')
         //change the line width for the breache whene it selected
-        let activeTool=tool.getAttribute('data-tooles');
-        switch(activeTool){
+        let selectedTool=tool.getAttribute('data-tooles');
+        paint.activeTool=selectedTool;
+        switch(selectedTool){
             case TOOL_LINE:
             case TOOL_RECTANGLE:
             case TOOL_CIRCLE:
@@ -43,6 +49,7 @@ tooles.forEach(tool=>{
                 //activate both line whidth
                 brushLineWidth.style.display='none';
                 shapeLineWidth.style.display='none';
+                break;
         }
 });
 })
