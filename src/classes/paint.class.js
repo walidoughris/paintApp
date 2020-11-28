@@ -1,5 +1,5 @@
 import {TOOL_BRUCH,TOOL_ERASER,TOOL_CIRCLE,TOOL_LINE,TOOL_PAINT_PACKET,TOOL_PENCIL,TOOL_TRIANGLE,TOOL_RECTANGLE} from './tool';
-import getCordinateOncanvase from './../functions/getCordonate.fun'
+import {getCordinateOncanvase,getCicrleDistance} from '../functions/utilite'
 
 export default class paint {
     constructor(canvasid){
@@ -13,25 +13,29 @@ export default class paint {
     }
     //initial our canvas and add events
     init(){
-        //mouse down event
+       //set the hight and the whidth of the canvas to 100% 
         this.canvas.setAttribute('width',document.querySelector('.paintApp').clientWidth);
         this.canvas.setAttribute('height',document.querySelector('.paintApp').clientHeight);
+        //mouse down event
         this.canvas.addEventListener('mousedown',e=> this.onMouseDown(e),false);
     }
     //function to draw shapes on mousedown
     onMouseDown(e){
       this.savedData=this.context.getImageData(0,0,this.canvas.width,this.canvas.height)
       this.startPosition=getCordinateOncanvase(e,this.canvas);
-      console.log(this.startPosition)
       this.canvas.onmousemove=e => this.onMouseMouve(e);
       document.onmouseup=e => this.onMouseUp(e);
     }
      //get the curunt mouse x and y
      onMouseMouve(e){
        this.currentPosition=getCordinateOncanvase(e,this.canvas);
-       console.log(this.tool,TOOL_LINE)
        switch(this.tool){
         case TOOL_LINE:
+           this.drawLine();
+          break;
+        case TOOL_RECTANGLE:
+        case TOOL_CIRCLE:
+        case TOOL_TRIANGLE:
            this.drawLine();
           break;
         default:
@@ -46,8 +50,20 @@ export default class paint {
      drawLine(){
         this.context.putImageData(this.savedData,0,0)
         this.context.beginPath();
+        if (this.tool==TOOL_LINE) {
         this.context.moveTo(this.startPosition.x,this.startPosition.y);
         this.context.lineTo(this.currentPosition.x,this.currentPosition.y);
+        }else if(this.tool==TOOL_RECTANGLE){
+          this.context.rect(this.startPosition.x,this.startPosition.y,this.currentPosition.x-this.startPosition.x,this.currentPosition.y-this.startPosition.y);
+        }else if(this.tool==TOOL_CIRCLE){
+          let distance=getCicrleDistance(this.startPosition,this.currentPosition);
+          this.context.arc(this.startPosition.x,this.startPosition.y,distance,0,Math.PI*2,false)
+        }else if(this.tool==TOOL_TRIANGLE){
+          this.context.moveTo(this.startPosition.x+(this.currentPosition.x-this.startPosition.x)/2,this.startPosition.y);
+          this.context.lineTo(this.startPosition.x,this.currentPosition.y);
+          this.context.lineTo(this.currentPosition.x,this.currentPosition.y);
+          this.context.closePath();
+        }
         this.context.stroke();
      }
 }
