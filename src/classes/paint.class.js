@@ -11,6 +11,15 @@ export default class paint {
         //set the selected tool it is a property not a method
         this.tool=tool;
     }
+    set lineWidth(lineWidth){
+       this._lineWidth=lineWidth;
+    }
+    set brushLineWidth(lineWidth){
+       this._brushLineWidth=lineWidth
+    }
+    set paintColor(color){
+      this.context.strokeStyle=color;
+    }
     //initial our canvas and add events
     init(){
        //set the hight and the whidth of the canvas to 100% 
@@ -25,18 +34,28 @@ export default class paint {
       this.startPosition=getCordinateOncanvase(e,this.canvas);
       this.canvas.onmousemove=e => this.onMouseMouve(e);
       document.onmouseup=e => this.onMouseUp(e);
+      if (this.tool==TOOL_PENCIL||this.tool==TOOL_BRUCH) {
+        this.context.beginPath();
+        this.context.moveTo(this.startPosition.x,this.startPosition.y);
+      }
     }
      //get the curunt mouse x and y
      onMouseMouve(e){
        this.currentPosition=getCordinateOncanvase(e,this.canvas);
        switch(this.tool){
         case TOOL_LINE:
-           this.drawLine();
+           this.drawShap(this._lineWidth);
           break;
         case TOOL_RECTANGLE:
         case TOOL_CIRCLE:
         case TOOL_TRIANGLE:
-           this.drawLine();
+           this.drawShap(this._lineWidth);
+          break;
+        case TOOL_PENCIL:
+          this.drawFreeLine(this._lineWidth);
+          break;
+        case TOOL_BRUCH:
+          this.drawFreeLine(this._brushLineWidth);
           break;
         default:
           break;
@@ -47,7 +66,8 @@ export default class paint {
        this.canvas.onmousemove= null;
        document.onmouseup= null;
      }
-     drawLine(){
+     drawShap(lineWidth){
+        this.context.lineWidth=lineWidth;
         this.context.putImageData(this.savedData,0,0)
         this.context.beginPath();
         if (this.tool==TOOL_LINE) {
@@ -65,5 +85,10 @@ export default class paint {
           this.context.closePath();
         }
         this.context.stroke();
+     }
+     drawFreeLine(lineWidth){
+       this.context.lineWidth=lineWidth;
+       this.context.lineTo(this.currentPosition.x,this.currentPosition.y);
+       this.context.stroke();
      }
 }

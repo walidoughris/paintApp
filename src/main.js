@@ -10,12 +10,16 @@ import Paint from './classes/paint.class'
 const commands=document.querySelectorAll('[data-command]');
 const tooles=document.querySelectorAll('[data-tooles]');
 const lineWidths=document.querySelectorAll('[data-line-width]');
+const brushLineWidths=document.querySelectorAll('[data-brush-width]')
 const colores=document.querySelectorAll('[data-color]');
 const shapeLineWidth=document.querySelector('.lineWidth.for-shap');
 const brushLineWidth=document.querySelector('.lineWidth.for-brush');
 //inial paint class to drow on the canvas
 let paint=new Paint('paintBorde');
 paint.activeTool=TOOL_PENCIL;
+paint.lineWidth=1;
+paint.brushLineWidth=4;
+paint.paintColor="#000";
 paint.init();
 // add the click event to the selected comands
 commands.forEach(command=>{
@@ -57,15 +61,26 @@ tooles.forEach(tool=>{
 lineWidths.forEach(lineWidth=>{
     lineWidth.addEventListener('click',e=>{
         document.querySelector('[data-line-width].active').classList.toggle('active')
-        console.log(lineWidth.getAttribute('data-line-width'))
+        let lineWidthValue=lineWidth.getAttribute('data-line-width');
+        paint.lineWidth=lineWidthValue;
         lineWidth.classList.add('active')
+});
+})
+// add the click event and active class to the line whithe
+brushLineWidths.forEach(brushlineWidth=>{
+    brushlineWidth.addEventListener('click',e=>{
+        document.querySelector('[data-brush-width].active').classList.toggle('active')
+        let brushlineWidthValue=brushlineWidth.getAttribute('data-brush-width');
+        paint.brushLineWidth=brushlineWidthValue;
+        brushlineWidth.classList.add('active')
 });
 })
 // add the click event and active class to the colors
 colores.forEach(color=>{
     color.addEventListener('click',e=>{
         document.querySelector('[data-color].active').classList.toggle('active')
-        console.log(color.getAttribute('data-color'))
+        let selectedColor=color.getAttribute('data-color');
+        paint.paintColor=selectedColor;
         color.classList.add('active')
 });
 })
