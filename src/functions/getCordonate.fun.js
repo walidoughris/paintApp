@@ -3,7 +3,8 @@
  */
 import point from './../classes/point.class'
 export default function getCordinateOncanvase(e,canvas){
-   let rect=canvas.getBoundingClientRect();
+   const rect=canvas.getBoundingClientRect();
+   console.log(rect.left)
    let x=e.clientX-rect.left;
    let y=e.clientY-rect.top;
    return new point(x,y);
